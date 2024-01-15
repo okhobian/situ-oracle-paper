@@ -1,0 +1,99 @@
+chain:
+  is_poa: true
+  network_url: "http://192.168.0.251:8545"  # pi4-1
+  # network_url: "http://192.168.0.130:8545"  # pi3-1
+  chain_id: "4935"
+
+  situ_build: "build/contracts/SituDistributed.json"            # SituDistributed.json | Situ.json
+  context_build: "build/contracts/ContextDistributed.json"      # ContextDistributed.json | Context.json
+
+  bayes_train_build: "build/contracts/TrainSituBayes.json"
+  bayes_predict_build: "build/contracts/PredictSituBayes.json"
+
+  ## for all three
+  sensor_pbk: "0x3CF03eF46d2b18e556e4d8E61644307576241b29"
+  sensor_pvk: "5790c70aa001041cef3913958ca821f6e11378d664b254d8dc6bb811368f5d17"
+
+  ## for situ-oracle test
+  oracle_pbk: "0xcC4DEeeD9b83E02E213EbC12d528e0fb3fEe9448"
+  oracle_pvk: "60e9b497b8e70887daa7034f49466e07976fbe99986af4060e72338440e8b4bd"
+  
+  ## for distributed test
+  authorities: 
+    0:
+      pbk: "0x9b82F280DA04b39F7C252F1507E2Bb28cF205433"
+      pvk: "ba2d649ab5793b21b340128ad4006ff936adb0dcdd51f1adc6fac63c76f11f53"
+    1:
+      pbk: "0x5401b84584237A2783d10252299ac269030cb742"
+      pvk: "e4876804e93cb9f9bbfc9ba3aeaa0db7c6624e0ee4a3df33ec5272c1c7b49e70"
+    2:
+      pbk: "0xEC831d1D15840F33d5966c222C5fB730EB10b2F4"
+      pvk: "7e1b7d9145de26ac2d45bfc69a24c1530dae53fc67fd90f56914c6904df8591b"
+
+model:
+  model_to_use: "RNN"
+  is_model_rnn: true
+  model_files:
+    GNB: "model_files/gnb.joblib"
+    BNB: "model_files/bnb.joblib"
+    MNB: "model_files/mnb.joblib"
+    RNN: "model_files/rnn.h5"
+    LSTM: "model_files/lstm.h5"
+    GRU: "model_files/gru.h5"
+
+data:
+  dataset: "d1_1m_0tm.csv"
+  num_rows: 200
+  test_size: 0.5
+  window_size: 15
+  sensor:
+    - "wardrobe"
+    - "tv"
+    - "oven"
+    - "officeLight"
+    - "officeDoorLock"
+    - "officeDoor"
+    - "officeCarp"
+    - "office"
+    - "mainDoorLock"
+    - "mainDoor"
+    - "livingLight"
+    - "livingCarp"
+    - "kitchenLight"
+    - "kitchenDoorLock"
+    - "kitchenDoor"
+    - "kitchenCarp"
+    - "hallwayLight"
+    - "fridge"
+    - "couch"
+    - "bedroomLight"
+    - "bedroomDoorLock"
+    - "bedroomDoor"
+    - "bedroomCarp"
+    - "bedTableLamp"
+    - "bed"
+    - "bathroomLight"
+    - "bathroomDoorLock"
+    - "bathroomDoor"
+    - "bathroomCarp"
+  
+  situ:
+    - "sleep"
+    - "eat"
+    - "work"
+    - "leisure"
+    - "personal"
+    - "other"
+    
+result:
+  context_update_times: "results/context_update_times.csv"
+  actuation_times: "results/actuation_times.csv"
+  gas_used_per_inference: "results/gas_used_per_inference.csv"
+  bayes_result_sumary: "results/result_sumary.json"
+  bayes_training_result_detail: "results/training_result_detail.csv"
+  bayes_inference_result_detail: "results/inference_result_detail.csv"
+  df_train_tx: "results/df_train_tx.csv"
+  df_predict_tx: "results/df_predict_tx.csv"
+  df_context_tx: "results/df_context_tx.csv"
+  df_situ_tx: "results/df_situ_tx.csv"
+  
